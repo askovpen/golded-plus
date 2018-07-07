@@ -14,6 +14,6 @@ build_script:
   - cmd: if "%TARGET%"=="vs2017" (
       msbuild "C:\projects\golded-plus\golded.vs2017.sln" /m /logger:"C:\Program Files\AppVeyor\BuildAgent\Appveyor.MSBuildLogger.dll" /property:Platform=Win32 &&
       msbuild "C:\projects\golded-plus\golded.vs2017.sln" /m /logger:"C:\Program Files\AppVeyor\BuildAgent\Appveyor.MSBuildLogger.dll" /property:Platform=x64 )
-  - cmd: if "%TARGET%"=="cugwin" (
+  - cmd: if "%TARGET%"=="cygwin" (
       xcopy /i /q /s C:\projects\golded-plus C:\cygwin\home\appveyor\golded-plus &&
       C:\cygwin\bin\bash -e -l -c "cd golded-plus && ./dist-gpw.sh" )
