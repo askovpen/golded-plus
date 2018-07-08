@@ -18,20 +18,3 @@ after_build:
   cmd: 7z a golded-plus-%PLATFORM%.zip windows/bin/%CONFIGURATION%/%PLATFORM%/*.exe
 artifacts:
   - path: golded-plus-*.zip
-before_deploy:
-  - echo on
-    & for /f "usebackq delims=" %%a in (`git log --pretty^=format:%%cd -n 1`) do set TIMESTAMP="%%a"
-    & for /f "usebackq delims=" %%a in (`ruby -e 'require "time"^; print Time::parse^(ENV["TIMESTAMP"]^).strftime^("%%Y%%m%%d_%%H%%M%%S"^)'`) do set TIMESTAMP=%%a
-deploy:
-- provider: BinTray
-  username: askovpen
-  api_key:
-    secure: tMeaumPwuXUoehCCRudxUm5bjBOmz7ZWkmpE1zM6/mZBBgEgJxBJ3yajiBpKcZ6J
-  subject: askovpen
-  repo: test
-  package: golded-plus
-  publish: true
-  version: $(TIMESTAMP)
-  override: true
-  on:
-    branch: master
