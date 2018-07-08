@@ -15,9 +15,13 @@ build:
   parallel: true
   project: golded.vs2017.sln
 after_build:
-  cmd: 7z a golded-%PLATFORM%.zip windows/bin/%CONFIGURATION%/%PLATFORM%/*.exe
+  cmd: 7z a golded-plus-%PLATFORM%.zip windows/bin/%CONFIGURATION%/%PLATFORM%/*.exe
 artifacts:
-  - path: golded-*.zip
+  - path: golded-plus-*.zip
+before_deploy:
+  - echo on
+    & for /f "usebackq delims=" %%a in (`git log --pretty^=format:%%cd -n 1`) do set TIMESTAMP="%%a"
+    & for /f "usebackq delims=" %%a in (`ruby -e 'require "time"^; print Time::parse^(ENV["TIMESTAMP"]^).strftime^("%%Y%%m%%d_%%H%%M%%S"^)'`) do set TIMESTAMP=%%a
 deploy:
 - provider: BinTray
   username: askovpen
@@ -27,7 +31,7 @@ deploy:
   repo: test
   package: golded-plus
   publish: true
-  version: latest
+  version: $(TIMESTAMP)
   override: true
   on:
     branch: master
