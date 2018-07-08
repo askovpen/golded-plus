@@ -15,7 +15,7 @@ build:
   parallel: true
   project: golded.vs2017.sln
 after_build:
-  cmd: 7z a golded-$(platform).zip windows/bin/$(configuration)/$(platform)/*.exe
+  cmd: 7z a golded-%platform%.zip windows/bin/%configuration%/%platform%/*.exe
 artifacts:
   - path: golded-*.zip
 deploy:
