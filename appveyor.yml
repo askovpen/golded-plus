@@ -12,3 +12,12 @@ install:
 build:
   parallel: true
   project: golded.vs2017.sln
+deploy:
+- provider: BinTray
+  username: askovpen
+  api_key:
+    secure: tMeaumPwuXUoehCCRudxUm5bjBOmz7ZWkmpE1zM6/mZBBgEgJxBJ3yajiBpKcZ6J
+  subject: askovpen
+  repo: test
+  package: golded-plus
+  publish: true
