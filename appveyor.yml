@@ -14,8 +14,10 @@ install:
 build:
   parallel: true
   project: golded.vs2017.sln
+after_build:
+  cmd: 7z a golded-$(platform).zip windows/bin/$(configuration)/$(platform)/*.exe
 artifacts:
-  - path: windows/bin/$(configuration)/$(platform)/*.exe
+  - path: golded-*.zip
 deploy:
 - provider: BinTray
   username: askovpen
@@ -25,3 +27,7 @@ deploy:
   repo: test
   package: golded-plus
   publish: true
+  version: latest
+  override: true
+  on:
+    branch: master
