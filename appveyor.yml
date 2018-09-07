@@ -3,6 +3,9 @@ branches:
   only:
     - master
     - /^golded-.*/
+image:
+  - Visual Studio 2015
+  - Visual Studio 2017
 environment:
    matrix:
     - generator: Visual Studio 10 2010
