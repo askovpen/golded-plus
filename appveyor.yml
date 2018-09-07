@@ -16,8 +16,8 @@ environment:
 install:
   - cmd: copy golded3\mygolded.__h golded3\mygolded.h
 build_script:
-  - if ["%GENERATOR%"]==["Visual Studio 10 2010 Win64"] if ["%APPVEYOR_REPO_TAG%"]!=["TRUE"] (exit)
-  - if ["%GENERATOR%"]==["Visual Studio 15 2017 Win64"] if ["%APPVEYOR_REPO_TAG%"]!=["TRUE"] (exit)
+  - if ["%GENERATOR%"]==["Visual Studio 10 2010 Win64"] if ["%APPVEYOR_REPO_TAG%"]==["FALSE"] (exit)
+  - if ["%GENERATOR%"]==["Visual Studio 15 2017 Win64"] if ["%APPVEYOR_REPO_TAG%"]==["FALSE"] (exit)
   - cmd: mkdir build && cd build && cmake --version
   - cmd: cmake .. -G "%GENERATOR%" 
   - cmd: cmake --build . -- /P:Configuration=Release
