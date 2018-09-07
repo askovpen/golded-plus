@@ -14,9 +14,7 @@ environment:
 install:
   - cmd: copy golded3\mygolded.__h golded3\mygolded.h
 build_script:
-  - cmd: echo %GENERATOR%
-  - cmd: echo %APPVEYOR_REPO_TAG%
-  - if ["%GENERATOR%"]==["Visual Studio 10 2010 Win64"] if not ["%APPVEYOR_REPO_TAG%"]==["TRUE"] (exit)
+  - if ["%GENERATOR%"]==["Visual Studio 10 2010 Win64"] if not ["%APPVEYOR_REPO_TAG%"]==["true"] (appveyor exit)
   - cmd: mkdir build && cd build && cmake --version
   - cmd: cmake .. -G "%GENERATOR%" 
   - cmd: cmake --build . -- /P:Configuration=Release
