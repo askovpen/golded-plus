@@ -26,7 +26,7 @@ build_script:
   - cmd: cmake .. -G "%GENERATOR%" 
   - cmd: cmake --build . -- /P:Configuration=Release
   - cmd: cpack
-  - ps:  gci *.7z | %{ rename-item –path $_.Fullname –Newname ( $_.basename +"-"+$Env.pf+$_.extension) }
+  - ps:  gci *.7z | %{ rename-item –path $_.Fullname –Newname ( $_.basename +"-"+$Env.PF+$_.extension) }
 artifacts:
   - path: build\*.7z
     name: dist
@@ -37,4 +37,3 @@ deploy:
   auth_token: $(GITHUB_OAUTH_TOKEN)
   on:
     appveyor_repo_tag: true
-    IMAGE: Visual Studio 2015
