@@ -3,12 +3,16 @@ branches:
   only:
     - master
     - /^golded-.*/
-image:
-  - Visual Studio 2015
 environment:
    matrix:
     - generator: Visual Studio 10 2010
+      image: Visual Studio 2015
     - generator: Visual Studio 10 2010 Win64
+      image: Visual Studio 2015
+    - generator: Visual Studio 15 2017
+      image: Visual Studio 2017
+    - generator: Visual Studio 15 2017 Win64
+      image: Visual Studio 2017
 install:
   - cmd: copy golded3\mygolded.__h golded3\mygolded.h
 build_script:
@@ -27,3 +31,4 @@ deploy:
   auth_token: $(GITHUB_OAUTH_TOKEN)
   on:
     appveyor_repo_tag: true
+    IMAGE: Visual Studio 2015
